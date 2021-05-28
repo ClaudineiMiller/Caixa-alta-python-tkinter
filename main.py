@@ -23,8 +23,25 @@ class Caixa_alta():
         self.window.resizable(0, 0)
         self.centraliza_window(568, 500)
 
+        btns = ['Maiúscula', 'Minúscula', 'Título', 'Limpar', 'Copiar']
+
         self.frame_principal = tk.Frame(self.window)
         self.frame_principal.pack(fill=BOTH)
+
+        self.label_top = tk.Label(self.frame_principal,
+                                  text='Transform Caracters',
+                                  font='Arial 25 bold')
+        self.label_top.pack(ipady=30)
+
+        self.frame_buttons = tk.Frame(self.frame_principal)
+        self.frame_buttons.pack()
+
+        for n in btns:
+            self.buttons = tk.Button(self.frame_buttons, text=n, width=12)
+            self.buttons.pack(side=LEFT, padx=2)
+
+        self.entry = Text(self.frame_principal)
+        self.entry.pack(side=BOTTOM, padx=10, pady=10)
 
 
         self.window.mainloop()
