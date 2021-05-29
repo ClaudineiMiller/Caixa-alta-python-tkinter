@@ -24,6 +24,8 @@ class Caixa_alta():
         self.centraliza_window(568, 500)
 
         btns = ['Maiúscula', 'Minúscula', 'Título', 'Limpar', 'Copiar']
+        self.text = StringVar()
+        self.ans_to_print = ''
 
         self.frame_principal = tk.Frame(self.window)
         self.frame_principal.pack(fill=BOTH)
@@ -36,15 +38,62 @@ class Caixa_alta():
         self.frame_buttons = tk.Frame(self.frame_principal)
         self.frame_buttons.pack()
 
+        b = tk.Button(self.frame_principal, text='teste', command=self.copy).pack()
+
         for n in btns:
             self.buttons = tk.Button(self.frame_buttons, text=n, width=12)
             self.buttons.pack(side=LEFT, padx=2)
 
-        self.entry = Text(self.frame_principal)
-        self.entry.pack(side=BOTTOM, padx=10, pady=10)
-
+        self.entry_text = Text(self.frame_principal)
+        self.entry_text.pack(side=BOTTOM, padx=10, pady=10)
+        self.entry_text.focus()
 
         self.window.mainloop()
+
+    def upper(self):
+        text = self.entry_text.get('1.0', END)
+        if len(text) <= 1:
+            mb.showerror('Atenção!!', 'A caixa está vazia.')
+            self.entry_text.focus()
+        else:
+            self.entry_text.delete('1.0', END)
+            self.entry_text.insert('1.0', text.upper())
+            self.entry_text.focus()
+
+
+    def lower(self):
+        text = self.entry_text.get('1.0', END)
+        if len(text) <= 1:
+            mb.showerror('Atenção!!', 'A caixa está vazia.')
+            self.entry_text.focus()
+        else:
+            self.entry_text.delete('1.0', END)
+            self.entry_text.insert('1.0', text.lower())
+            self.entry_text.focus()
+
+    def title(self):
+        text = self.entry_text.get('1.0', END)
+        if len(text) <= 1:
+            mb.showerror('Atenção!!', 'A caixa está vazia.')
+        else:
+            self.entry_text.delete('1.0', END)
+            self.entry_text.insert('1.0', text.title())
+            self.entry_text.focus()
+
+    def clear_text_box(self):
+        text = self.entry_text.get('1.0', END)
+        self.entry_text.delete('1.0', END)
+        self.entry_text.focus()
+
+    def copy(self):
+        text = self.entry_text.get('1.0', END)
+        if len(text) <= 1:
+            mb.showerror('Atenção!!', 'A caixa está vazia.')
+        else:
+            self.window.clipboard_clear()
+            self.window.clipboard_append(text)
+            mb.showinfo('Atenção!', 'Conteúdo copiado com sucesso.')
+            self.entry_text.focus()
 
     def centraliza_window(self, comprimento, altura):
         """
