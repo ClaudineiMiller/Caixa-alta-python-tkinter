@@ -23,7 +23,8 @@ class Caixa_alta():
         self.window.resizable(0, 0)
         self.centraliza_window(568, 500)
 
-        btns = ['Maiúscula', 'Minúscula', 'Título', 'Limpar', 'Copiar']
+        list_buttons_name = ['Maiúscula', 'Minúscula', 'Título', 'Limpar', 'Copiar']
+        buttons_dict = {}
         self.text = StringVar()
         self.ans_to_print = ''
 
@@ -38,17 +39,30 @@ class Caixa_alta():
         self.frame_buttons = tk.Frame(self.frame_principal)
         self.frame_buttons.pack()
 
-        b = tk.Button(self.frame_principal, text='teste', command=self.copy).pack()
-
-        for n in btns:
-            self.buttons = tk.Button(self.frame_buttons, text=n, width=12)
-            self.buttons.pack(side=LEFT, padx=2)
+        for name_buttons in list_buttons_name:
+            buttons = tk.Button(
+                self.frame_buttons,
+                text=name_buttons,
+                command=lambda name_buttons=name_buttons: self.action(name_buttons))
+            buttons.pack(side=LEFT, padx=2, ipadx=8)
 
         self.entry_text = Text(self.frame_principal)
         self.entry_text.pack(side=BOTTOM, padx=10, pady=10)
         self.entry_text.focus()
 
         self.window.mainloop()
+
+    def action(self, name):
+        if name == 'Maiúscula':
+            self.upper()
+        elif name == 'Minúscula':
+            self.lower()
+        elif name == 'Título':
+            self.title()
+        elif name == 'Limpar':
+            self.clear_text_box()
+        elif name == 'Copiar':
+            self.copy()
 
     def upper(self):
         text = self.entry_text.get('1.0', END)
@@ -59,7 +73,6 @@ class Caixa_alta():
             self.entry_text.delete('1.0', END)
             self.entry_text.insert('1.0', text.upper())
             self.entry_text.focus()
-
 
     def lower(self):
         text = self.entry_text.get('1.0', END)
