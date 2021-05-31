@@ -40,6 +40,9 @@ class Caixa_alta():
         self.frame_buttons = tk.Frame(self.frame_principal)
         self.frame_buttons.pack()
 
+        self.frame_text = tk.Frame(self.frame_principal)
+        self.frame_text.pack()
+
         for name_buttons in list_buttons_name:
             buttons = tk.Button(
                 self.frame_buttons,
@@ -47,9 +50,13 @@ class Caixa_alta():
                 command=lambda name_buttons=name_buttons: self.action(name_buttons))
             buttons.pack(side=LEFT, padx=2, ipadx=8)
 
-        self.entry_text = Text(self.frame_principal)
-        self.entry_text.pack(side=BOTTOM, padx=10, pady=10)
+        self.entry_text = Text(self.frame_text)
+        self.entry_text.pack(side=LEFT, pady=10)
         self.entry_text.focus()
+
+        # scrollbar
+        self.scrollbar = tk.Scrollbar(self.frame_text, orient="vertical", command=self.entry_text.yview)
+        self.scrollbar.pack(side=LEFT, ipady=165)
 
         self.window.mainloop()
 
