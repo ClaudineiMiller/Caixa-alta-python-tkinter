@@ -12,7 +12,6 @@ from tkinter import *
 from ttkthemes import ThemedTk
 from tkinter import messagebox as mb
 
-
 class Caixa_alta():
     """ Classe principal - chama a janela window com todos os widgets. """
     db_name = 'database.db'
@@ -21,7 +20,9 @@ class Caixa_alta():
         self.window = ThemedTk(theme='plastik')
         self.window.title("Caixa Alta em Python/Tkinter")
         self.window.resizable(0, 0)
-        self.centraliza_window(568, 500)
+        self.window.iconphoto(True, PhotoImage(file='image/icon-page.ico'))
+
+        self.centraliza_window(668, 550)
 
         list_buttons_name = ['Maiúscula', 'Minúscula', 'Título', 'Limpar', 'Copiar']
         buttons_dict = {}
