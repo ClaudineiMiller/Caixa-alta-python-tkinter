@@ -1,11 +1,13 @@
 # Caixa-alta-python-tkinter
 ### Transforma caracteres para:
-- [x] Maiúsculo
-- [x] Minúsculo
-- [x] Título
-- [x] Copia o texto
+-  Maiúsculo
+-  Minúsculo
+-  Título
+-  Copia o texto
 
 Construído com python e tkinter
 
-![]('/image/print1.png')
-![]('/image/print2.png')
+<div style="display: inline;">
+  <img src="/image/print1.png" alt="image1" width="550" height="450">
+  <img src="/image/print2.png" alt="image2" width="550" height="450">
+</div>
